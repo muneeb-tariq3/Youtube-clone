@@ -1,180 +1,209 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>YouTube Clone</title>
-  <link rel="icon" type="image/png" href="Youtube clone Logo-.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Birthday Surprise 🎁</title>
 
-  <link rel="stylesheet" href="style.css" />
-  <script defer src="script.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{
+  background: linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);
+  color:white;
+  overflow:hidden;
+  text-align:center;
+}
+
+.container{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+}
+
+/* Start Button */
+.btn{
+  padding:15px 35px;
+  border:none;
+  border-radius:30px;
+  background:#ff4da6;
+  color:white;
+  font-size:18px;
+  cursor:pointer;
+  animation:pulse 1.5s infinite;
+}
+@keyframes pulse{50%{transform:scale(1.1);}}
+
+/* Hidden content */
+.hidden{display:none;}
+
+/* Messages */
+.message{
+  font-size:22px;
+  margin:15px;
+  opacity:0;
+  animation:fadeIn 2s forwards;
+}
+@keyframes fadeIn{to{opacity:1;}}
+
+/* Hearts */
+.heart{
+  position:absolute;
+  font-size:20px;
+  animation:float 6s linear infinite;
+}
+@keyframes float{0%{transform:translateY(100vh);}100%{transform:translateY(-10vh);}}
+
+/* Confetti */
+.confetti{
+  position:absolute;
+  width:8px;
+  height:8px;
+  background:yellow;
+  animation:fall 3s linear infinite;
+}
+@keyframes fall{to{transform:translateY(100vh);}}
+
+/* Sparkles */
+.sparkle{
+  position:absolute;
+  animation:spark 2s linear infinite;
+}
+@keyframes spark{50%{opacity:1;transform:scale(1.2);}}
+
+/* Final Text Glow */
+.final{
+  font-size:40px;
+  margin-top:20px;
+  animation:glow 2s infinite alternate;
+}
+@keyframes glow{from{text-shadow:0 0 10px pink;}to{text-shadow:0 0 30px purple;}}
+
+/* Buttons */
+.actions button{
+  margin:10px;
+  padding:12px 22px;
+  border:none;
+  border-radius:20px;
+  background:#ff66cc;
+  color:white;
+  cursor:pointer;
+  transition:0.3s;
+}
+.actions button:hover{transform:scale(1.2) rotate(3deg);}
+
+/* Gift Box */
+.gift{
+  margin-top:20px;
+  font-size:50px;
+  cursor:pointer;
+  animation:bounce 1.5s infinite;
+}
+@keyframes bounce{50%{transform:translateY(-10px);}}
+
+/* Fireworks */
+.firework{
+  position:absolute;
+  font-size:20px;
+  animation:explode 1s ease-out forwards;
+}
+@keyframes explode{0%{transform:scale(0);}100%{transform:scale(3);opacity:0;}}
+</style>
 </head>
 
-<body class="light"> <!-- Default theme set to light -->
-  <header class="header light">
-    <div class="logo">
-      <img src="Youtube clone Logo-.png" alt="YouTube Clone" class="logo-img" />
-    </div>
-    
-    <!-- Search and Theme controls -->
-    <div class="search-bar">
-      <input type="text" placeholder="Search..." id="searchInput" aria-label="Search input" />
-      <button id="searchBtn" aria-label="Search button">🔍</button>
-    </div>
-  
-    <div class="user-actions">
-      <!-- ... existing content ... -->
-    </div>
-  </header>
-  
+<body>
 
-  <main class="main-content">
-    <aside class="sidebar">
-      <nav>
-        <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Trending</a></li>
-          <li><a href="#">Subscriptions</a></li>
-          <li><a href="#">Library</a></li>
-        </ul>
-      </nav>
-    </aside>
+<!-- 🎵 Background Music -->
+<audio id="bgMusic" loop>
+  <source src="https://orangefreesounds.com/wp-content/uploads/2023/02/Piano-instrumental-song.mp3" type="audio/mpeg">
+</audio>
 
-    <section class="video-grid">
-      <!-- Real embedded YouTube videos -->
-      <div class="video-card">
-        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Never Gonna Give You Up" allowfullscreen></iframe>
-        <div class="video-info">
-          <h3>Never Gonna Give You Up</h3>
-          <p>Rick Astley • 1.3B views</p>
-        </div>
-      </div>
-
-      <div class="video-card">
-        <!-- Additional 6 video cards -->
-<div class="video-card">
-  <iframe src="https://www.youtube.com/embed/IcrbM1l_BoI" title="Cheap Thrills" allowfullscreen></iframe>
-  <div class="video-info">
-    <h3>Cheap Thrills</h3>
-    <p>Sia • 1.8B views</p>
-  </div>
+<!-- Start Screen -->
+<div class="container" id="start">
+  <button class="btn" onclick="startSurprise()">Tap for Cute Surprise 🎁</button>
 </div>
 
-<div class="video-card">
-  <iframe src="https://www.youtube.com/embed/kXYiU_JCYtU" title="Numb" allowfullscreen></iframe>
-  <div class="video-info">
-    <h3>Numb</h3>
-    <p>Linkin Park • 1.7B views</p>
+<!-- Main Content -->
+<div class="container hidden" id="main">
+  <div class="message">Hey... Happy Birthday 🎉</div>
+  <div class="message">Wishing you happiness, smiles & good vibes ✨</div>
+
+  <div class="actions">
+    <button onclick="popup('Stay happy always 😊')">💖</button>
+    <button onclick="popup('Keep shining ✨')">🎈</button>
+    <button onclick="popup('Enjoy your special day 🎂')">🌟</button>
   </div>
+
+  <!-- Gift Box -->
+  <div class="gift" onclick="openGift()">🎁</div>
+
+  <div class="final">Happy Birthday 🎉</div>
 </div>
 
-<div class="video-card">
-  <iframe src="https://www.youtube.com/embed/fRh_vgS2dFE" title="Sorry" allowfullscreen></iframe>
-  <div class="video-info">
-    <h3>Sorry</h3>
-    <p>Justin Bieber • 3.6B views</p>
-  </div>
-</div>
+<script>
+function startSurprise(){
+  document.getElementById("start").style.display="none";
+  document.getElementById("main").classList.remove("hidden");
 
-<div class="video-card">
-  <iframe src="https://www.youtube.com/embed/tgbNymZ7vqY" title="Baby Shark Dance" allowfullscreen></iframe>
-  <div class="video-info">
-    <h3>Baby Shark Dance</h3>
-    <p>Pinkfong • 13B views</p>
-  </div>
-</div>
+  // Play music
+  document.getElementById("bgMusic").play();
 
-<div class="video-card">
-  <iframe src="https://www.youtube.com/embed/uelHwf8o7_U" title="Love The Way You Lie" allowfullscreen></iframe>
-  <div class="video-info">
-    <h3>Love The Way You Lie</h3>
-    <p>Eminem ft. Rihanna • 2.6B views</p>
-  </div>
-</div>
+  // Hearts
+  setInterval(()=>{
+    let h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="💖";
+    h.style.left=Math.random()*100+"vw";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
+  },300);
 
-<div class="video-card">
-  <iframe src="https://www.youtube.com/embed/60ItHLz5WEA" title="Faded" allowfullscreen></iframe>
-  <div class="video-info">
-    <h3>Faded</h3>
-    <p>Alan Walker • 3.7B views</p>
-  </div>
-</div>
+  // Confetti
+  setInterval(()=>{
+    let c=document.createElement("div");
+    c.className="confetti";
+    c.style.left=Math.random()*100+"vw";
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),3000);
+  },200);
 
-        <iframe src="https://www.youtube.com/embed/3JZ_D3ELwOQ" title="Adele - Hello" allowfullscreen></iframe>
-        <div class="video-info">
-          <h3>Adele - Hello</h3>
-          <p>AdeleVEVO • 3.2B views</p>
-        </div>
-      </div>
+  // Sparkles
+  setInterval(()=>{
+    let s=document.createElement("div");
+    s.className="sparkle";
+    s.innerHTML="✨";
+    s.style.left=Math.random()*100+"vw";
+    s.style.top=Math.random()*100+"vh";
+    document.body.appendChild(s);
+    setTimeout(()=>s.remove(),2000);
+  },400);
 
-      <div class="video-card">
-        <iframe src="https://www.youtube.com/embed/kJQP7kiw5Fk" title="Despacito" allowfullscreen></iframe>
-        <div class="video-info">
-          <h3>Despacito</h3>
-          <p>Luis Fonsi • 8.3B views</p>
-        </div>
-      </div>
+  // Fun daily alert reminders (safe, cute)
+  setTimeout(()=>{alert("Hope you are having a fun day today! 😊");}, 5000);
+  setTimeout(()=>{alert("Keep smiling 😄✨");}, 10000);
+  setTimeout(()=>{alert("Enjoy your special day 🎉");}, 15000);
+}
 
-      <div class="video-card">
-        <iframe src="https://www.youtube.com/embed/9bZkp7q19f0" title="Gangnam Style" allowfullscreen></iframe>
-        <div class="video-info">
-          <h3>PSY - Gangnam Style</h3>
-          <p>officialpsy • 4.8B views</p>
-        </div>
-      </div>
+// Popup buttons
+function popup(text){ alert(text); }
 
-      <div class="video-card">
-        <iframe src="https://www.youtube.com/embed/WchzYT9zN2Q" title="Shape of You" allowfullscreen></iframe>
-        <div class="video-info">
-          <h3>Shape of You</h3>
-          <p>Ed Sheeran • 5.5B views</p>
-        </div>
-      </div>
+// Gift + Fireworks
+function openGift(){
+  alert("A small surprise just for you 🎁✨");
+  for(let i=0;i<15;i++){
+    let f=document.createElement("div");
+    f.className="firework";
+    f.innerHTML="🎆";
+    f.style.left=Math.random()*100+"vw";
+    f.style.top=Math.random()*100+"vh";
+    document.body.appendChild(f);
+    setTimeout(()=>f.remove(),1000);
+  }
+}
+</script>
 
-      <div class="video-card">
-        <iframe src="https://www.youtube.com/embed/Lrle0xD2bqI" title="Uptown Funk" allowfullscreen></iframe>
-        <div class="video-info">
-          <h3>Uptown Funk</h3>
-          <p>Mark Ronson ft. Bruno Mars • 4.2B views</p>
-        </div>
-      </div>
-
-      <div class="video-card">
-        <iframe src="https://www.youtube.com/embed/2Vv-BfVoq4g" title="Perfect" allowfullscreen></iframe>
-        <div class="video-info">
-          <h3>Perfect</h3>
-          <p>Ed Sheeran • 3.6B views</p>
-        </div>
-      </div>
-
-      <div class="video-card">
-        <iframe src="https://www.youtube.com/embed/KJH3fVd2k1s" title="Blinding Lights" allowfullscreen></iframe>
-        <div class="video-info">
-          <h3>Blinding Lights</h3>
-          <p>The Weeknd • 2.8B views</p>
-        </div>
-      </div>
-
-      <div class="video-card">
-        <iframe src="https://www.youtube.com/embed/PIh2xe4jnpk" title="Old Town Road" allowfullscreen></iframe>
-        <div class="video-info">
-          <h3>Old Town Road</h3>
-          <p>Lil Nas X • 1.7B views</p>
-        </div>
-      </div>
-
-      <div class="video-card">
-        <iframe src="https://www.youtube.com/embed/xKJ45b2jXZ8" title="Take Me to Church" allowfullscreen></iframe>
-        <div class="video-info">
-          <h3>Take Me to Church</h3>
-          <p>Hozier • 1.3B views</p>
-        </div>
-      </div>
-      
-      <!-- Add more videos as needed -->
-    </section>
-  </main>
 </body>
-
 </html>
