@@ -3,51 +3,47 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BTS-Themed Mini Gift Website</title>
+<title>BTS Gift Website</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
-html, body{scroll-behavior:smooth;}
+html,body{scroll-behavior:smooth;background:linear-gradient(160deg,#2a1a4f,#6b2e6c,#ff8cc6);color:white;text-align:center;}
 
-/* Theme Gradient */
-body{
-  background: linear-gradient(160deg,#2a1a4f,#6b2e6c,#ff8cc6);
-  color:white;
-  text-align:center;
-  overflow-x:hidden;
+/* Header */
+header{
+  padding:20px;
+  font-size:40px;
+  font-weight:700;
+  letter-spacing:5px;
+  text-shadow:2px 2px 5px rgba(0,0,0,0.4);
 }
 
-/* Sections for multi-page feel */
+/* Sections */
 .section{
   min-height:100vh;
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
-  padding:40px 20px;
-  transition:all 1s ease;
+  padding:20px;
   opacity:0;
-  transform:translateY(30px);
+  transform:translateY(20px);
+  transition:all 1s ease;
 }
-.section.visible{opacity:1; transform:translateY(0);}
 
-/* Headers */
-h1,h2,h3{margin-bottom:20px; font-weight:700; text-shadow:1px 1px 5px rgba(0,0,0,0.4);}
-p{font-weight:300;line-height:1.5; max-width:600px;}
-
-/* Buttons */
-button{
-  padding:12px 25px;
-  border:none;
-  border-radius:20px;
-  background:#ff66cc;
-  color:white;
-  cursor:pointer;
-  margin-top:15px;
-  transition:0.3s;
+/* Divider Line */
+.divider{
+  width:80%;
+  height:2px;
+  background:white;
+  margin:20px 0;
+  opacity:0.3;
 }
-button:hover{transform:scale(1.05);}
+
+/* Headers & Paragraphs */
+h2{margin-bottom:15px; font-weight:700;}
+p{font-weight:300;line-height:1.5; max-width:500px;}
 
 /* Gift Icon */
 .gift{
@@ -58,15 +54,6 @@ button:hover{transform:scale(1.05);}
 }
 @keyframes bounce{50%{transform:translateY(-10px);}}
 
-/* BMW Image */
-#bmwContainer img{
-  width:90%;
-  border-radius:15px;
-  max-width:600px;
-  margin-top:15px;
-  box-shadow:0 4px 15px rgba(0,0,0,0.4);
-}
-
 /* Fireworks */
 .firework{
   position:absolute;
@@ -75,7 +62,7 @@ button:hover{transform:scale(1.05);}
 }
 @keyframes explode{0%{transform:scale(0);}100%{transform:scale(3);opacity:0;}}
 
-/* Subtle Floating Particles */
+/* Subtle Particles */
 .particle{
   position:absolute;
   width:6px; height:6px;
@@ -101,29 +88,22 @@ footer a:hover{text-decoration:underline;}
 </head>
 <body>
 
+<!-- Header -->
+<header>M</header>
+
 <!-- Section 1: Welcome -->
 <div class="section" id="welcome">
-  <h1>Happy Birthday 🎁</h1>
-  <p>Welcome to your mini BTS-themed gift website! Scroll down to explore your surprises.</p>
-  <button onclick="scrollToSection('about')">Go to About</button>
+  <h2>Happy Birthday 🎁</h2>
+  <p>Welcome to your BTS-themed gift website! Scroll down to see your surprise.</p>
 </div>
+<div class="divider"></div>
 
 <!-- Section 2: About -->
 <div class="section" id="about">
-  <h2>About You</h2>
-  <p>You are so cute and from Lahore.<br>
-     Studying in Matric Beacon House.<br>
-     Hobby: Creating reels and vlogs.</p>
-  <button onclick="showBMW()">Click for Your Dream BMW 🚗</button>
+  <h2>About</h2>
+  <p>Here is your birthday: 17 March 2026</p>
 </div>
-
-<!-- BMW Section -->
-<div class="section" id="bmwContainer">
-  <h2>Your Dream BMW 😎</h2>
-  <a href="https://www.bmw.com/en/bmw-models.html" target="_blank">
-    <img src="https://cdn.bmwblog.com/wp-content/uploads/2022/12/2023-BMW-M3-G80-Competition-19-830x553.jpg">
-  </a>
-</div>
+<div class="divider"></div>
 
 <!-- Section 3: Gift -->
 <div class="section" id="giftSection">
@@ -131,10 +111,11 @@ footer a:hover{text-decoration:underline;}
   <div class="gift" onclick="openGift()">🎁</div>
   <p>Click the gift to see your surprise!</p>
 </div>
+<div class="divider"></div>
 
 <!-- Section 4: Extra Message -->
 <div class="section" id="messageSection">
-  <h2>A Little Message</h2>
+  <h2>Message</h2>
   <p>If you need any type of website to prank or surprise your friends, just tell me 😊<br>
      This is only a little gift for you!</p>
 </div>
@@ -155,23 +136,16 @@ footer a:hover{text-decoration:underline;}
 </footer>
 
 <script>
-// Scroll animation: sections fade-in
+// Section fade-in
 const sections=document.querySelectorAll('.section');
 function revealSections(){
-  const triggerBottom=window.innerHeight*0.85;
-  sections.forEach(section=>{
-    const top=section.getBoundingClientRect().top;
-    if(top<triggerBottom){section.classList.add('visible');}
+  const trigger=window.innerHeight*0.85;
+  sections.forEach(s=>{
+    if(s.getBoundingClientRect().top<trigger){s.classList.add('visible');}
   });
 }
 window.addEventListener('scroll',revealSections);
 window.addEventListener('load',revealSections);
-
-// Scroll helper
-function scrollToSection(id){document.getElementById(id).scrollIntoView({behavior:'smooth'});}
-
-// BMW show
-function showBMW(){document.getElementById('bmwContainer').scrollIntoView({behavior:'smooth'});}
 
 // Gift + Fireworks
 function openGift(){
