@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BTS Gift Website</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+html,body{scroll-behavior:smooth;background:linear-gradient(160deg,#2a1a4f,#6b2e6c,#ff8cc6);color:white;text-align:center;}
+
+/* Header */
+header{
+  padding:15px 10px;
+  font-size:8vw; /* responsive header */
+  font-weight:700;
+  letter-spacing:5px;
+  text-shadow:2px 2px 5px rgba(0,0,0,0.4);
+}
+
+/* Sections */
+.section{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  padding:5vw 5%;
+  opacity:0;
+  transform:translateY(20px);
+  transition:all 1s ease;
+}
+
+/* Divider Line */
+.divider{
+  width:90%;
+  max-width:500px;
+  height:2px;
+  background:white;
+  margin:20px 0;
+  opacity:0.3;
+}
+
+/* Headers & Paragraphs */
+h2{margin-bottom:15px;font-weight:700;font-size:6vw;}
+p{font-weight:300;line-height:1.5; max-width:90%; font-size:4vw;}
+
+/* Gift Icon */
+.gift{
+  font-size:12vw;
+  cursor:pointer;
+  margin-top:20px;
+  animation:bounce 1.5s infinite;
+}
+@keyframes bounce{50%{transform:translateY(-10px);}}
+
+/* Fireworks */
+.firework{
+  position:absolute;
+  font-size:6vw;
+  animation:explode 1s ease-out forwards;
+}
+@keyframes explode{0%{transform:scale(0);}100%{transform:scale(3);opacity:0;}}
+
+/* Subtle Particles */
+.particle{
+  position:absolute;
+  width:3vw; height:3vw;
+  background:rgba(255,255,255,0.7);
+  border-radius:50%;
+  animation:fall 5s linear infinite;
+}
+@keyframes fall{0%{transform:translateY(-10vh);}100%{transform:translateY(110vh);}}
+
+/* Footer */
+footer{
+  background:rgba(0,0,0,0.4);
+  padding:20px;
+  border-radius:15px;
+  width:90%;
+  max-width:800px;
+  margin:40px auto 20px auto;
+  text-align:left;
+}
+footer a{color:#ff66cc;text-decoration:none;}
+footer a:hover{text-decoration:underline;}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header>M</header>
+
+<!-- Section 1: Welcome -->
+<div class="section" id="welcome">
+  <h2>Happy Birthday 🎁</h2>
+  <p>Welcome to your BTS-themed gift website! Scroll down to see your surprise.</p>
+</div>
+<div class="divider"></div>
+
+<!-- Section 2: About -->
+<div class="section" id="about">
+  <h2>About</h2>
+  <p>Here is your birthday: 17 March 2026</p>
+</div>
+<div class="divider"></div>
+
+<!-- Section 3: Gift -->
+<div class="section" id="giftSection">
+  <h2>Special Gift 🎁</h2>
+  <div class="gift" onclick="openGift()">🎁</div>
+  <p>Click the gift to see your surprise!</p>
+</div>
+<div class="divider"></div>
+
+<!-- Section 4: Extra Message -->
+<div class="section" id="messageSection">
+  <h2>Message</h2>
+  <p>If you need any type of website to prank or surprise your friends, just tell me 😊<br>
+     This is only a little gift for you!</p>
+</div>
+
+<!-- Footer -->
+<footer>
+  <p><strong>Contact Me:</strong> muneebtariq841@gmail.com</p>
+  <p><strong>Website:</strong> <a href="https://muneeb-tariq.netlify.app" target="_blank">muneeb-tariq.netlify.app</a></p>
+  <p><strong>Instagram:</strong> muneeb_1603 | Rin•du•tu° ku•ku•zu</p>
+  <p style="margin-top:10px;">
+    Short Description:<br>
+    From FSD, currently studying in 9th grade.<br>
+    Passionate about self-learning.<br>
+    Focused on website creation.<br>
+    Love experimenting with new web projects.<br>
+    Always trying to make interactive and fun websites.
+  </p>
+</footer>
+
+<script>
+// Section fade-in
+const sections=document.querySelectorAll('.section');
+function revealSections(){
+  const trigger=window.innerHeight*0.85;
+  sections.forEach(s=>{
+    if(s.getBoundingClientRect().top<trigger){s.classList.add('visible');}
+  });
+}
+window.addEventListener('scroll',revealSections);
+window.addEventListener('load',revealSections);
+
+// Gift + Fireworks
+function openGift(){
+  alert("A little surprise just for you 🎉✨");
+  for(let i=0;i<20;i++){
+    let f=document.createElement('div');
+    f.className='firework';
+    f.innerHTML='🎆';
+    f.style.left=Math.random()*100+'vw';
+    f.style.top=Math.random()*100+'vh';
+    document.body.appendChild(f);
+    setTimeout(()=>f.remove(),1200);
+  }
+}
+
+// Floating particles
+setInterval(()=>{
+  let p=document.createElement('div');
+  p.className='particle';
+  p.style.left=Math.random()*100+'vw';
+  p.style.top='-10vh';
+  document.body.appendChild(p);
+  setTimeout(()=>p.remove(),5000);
+},400);
+</script>
+
+</body>
+</html>
