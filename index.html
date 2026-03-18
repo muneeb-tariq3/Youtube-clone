@@ -12,8 +12,8 @@ html,body{scroll-behavior:smooth;background:linear-gradient(160deg,#2a1a4f,#6b2e
 
 /* Header */
 header{
-  padding:20px;
-  font-size:40px;
+  padding:15px 10px;
+  font-size:8vw; /* responsive header */
   font-weight:700;
   letter-spacing:5px;
   text-shadow:2px 2px 5px rgba(0,0,0,0.4);
@@ -26,7 +26,7 @@ header{
   flex-direction:column;
   justify-content:center;
   align-items:center;
-  padding:20px;
+  padding:5vw 5%;
   opacity:0;
   transform:translateY(20px);
   transition:all 1s ease;
@@ -34,7 +34,8 @@ header{
 
 /* Divider Line */
 .divider{
-  width:80%;
+  width:90%;
+  max-width:500px;
   height:2px;
   background:white;
   margin:20px 0;
@@ -42,12 +43,12 @@ header{
 }
 
 /* Headers & Paragraphs */
-h2{margin-bottom:15px; font-weight:700;}
-p{font-weight:300;line-height:1.5; max-width:500px;}
+h2{margin-bottom:15px;font-weight:700;font-size:6vw;}
+p{font-weight:300;line-height:1.5; max-width:90%; font-size:4vw;}
 
 /* Gift Icon */
 .gift{
-  font-size:50px;
+  font-size:12vw;
   cursor:pointer;
   margin-top:20px;
   animation:bounce 1.5s infinite;
@@ -57,7 +58,7 @@ p{font-weight:300;line-height:1.5; max-width:500px;}
 /* Fireworks */
 .firework{
   position:absolute;
-  font-size:25px;
+  font-size:6vw;
   animation:explode 1s ease-out forwards;
 }
 @keyframes explode{0%{transform:scale(0);}100%{transform:scale(3);opacity:0;}}
@@ -65,7 +66,7 @@ p{font-weight:300;line-height:1.5; max-width:500px;}
 /* Subtle Particles */
 .particle{
   position:absolute;
-  width:6px; height:6px;
+  width:3vw; height:3vw;
   background:rgba(255,255,255,0.7);
   border-radius:50%;
   animation:fall 5s linear infinite;
